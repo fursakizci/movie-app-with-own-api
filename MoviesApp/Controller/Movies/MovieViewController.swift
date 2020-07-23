@@ -133,47 +133,12 @@ extension MovieViewController:UICollectionViewDataSource{
         if isThereSearch {
             cell.movieNameLabel.text = searchResultMovies[indexPath.row].name
             cell.movieYearLabel.text = searchResultMovies[indexPath.row].year
+            cell.posterImageView.getImage(withText: searchResultMovies[indexPath.row].poster!)
 
-            if let url = URL(string: "http://fursakizci.tk/movies/Posters/\(searchResultMovies[indexPath.row].poster!)"){
-
-                         let request = URLRequest(url: url)
-
-                         let task = URLSession.shared.dataTask(with: request) {(data,response,error) in
-
-                             if error == nil{
-                                 if let incomingData = data{
-                                     let image = UIImage(data: incomingData)
-
-                                     DispatchQueue.main.sync(execute: {
-                                        cell.posterImageView.image = image
-                                     })
-                                 }
-                             }
-                         }
-                         task.resume()
-                     }
         }else{
             cell.movieNameLabel.text = movie.name
             cell.movieYearLabel.text = movie.year
-
-            if let url = URL(string: "http://fursakizci.tk/movies/Posters/\(movie.poster!)"){
-
-                         let request = URLRequest(url: url)
-
-                         let task = URLSession.shared.dataTask(with: request) {(data,response,error) in
-
-                             if error == nil{
-                                 if let incomingData = data{
-                                     let image = UIImage(data: incomingData)
-
-                                     DispatchQueue.main.sync(execute: {
-                                        cell.posterImageView.image = image
-                                     })
-                                 }
-                             }
-                         }
-                         task.resume()
-                     }
+            cell.posterImageView.getImage(withText: movie.poster!)
         }
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
@@ -181,6 +146,7 @@ extension MovieViewController:UICollectionViewDataSource{
         return cell
     }
 }
+
 
 
 
