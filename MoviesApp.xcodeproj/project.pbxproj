@@ -24,6 +24,7 @@
 		178D68A124C34947005ADF82 /* Directors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178D68A024C34947005ADF82 /* Directors.swift */; };
 		178D68A324C3583C005ADF82 /* CategoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178D68A224C3583C005ADF82 /* CategoryResult.swift */; };
 		178D68A524C3590E005ADF82 /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178D68A424C3590E005ADF82 /* MovieResult.swift */; };
+		17FBDB0424CAD83000E0C0B0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FBDB0324CAD83000E0C0B0 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		178D68A024C34947005ADF82 /* Directors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directors.swift; sourceTree = "<group>"; };
 		178D68A224C3583C005ADF82 /* CategoryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResult.swift; sourceTree = "<group>"; };
 		178D68A424C3590E005ADF82 /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
+		17FBDB0324CAD83000E0C0B0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				178D686E24C33A5B005ADF82 /* Assets.xcassets */,
 				1779895524CA4E8B00EE2EA8 /* Delegate */,
 				1779895224CA4E0800EE2EA8 /* Extensions */,
+				17FBDB0324CAD83000E0C0B0 /* Network.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17FBDB0424CAD83000E0C0B0 /* Network.swift in Sources */,
 				178D689D24C3491C005ADF82 /* Movies.swift in Sources */,
 				178D68A524C3590E005ADF82 /* MovieResult.swift in Sources */,
 				178D689F24C34935005ADF82 /* Categories.swift in Sources */,
