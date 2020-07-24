@@ -20,33 +20,21 @@ class CategoryViewController: UIViewController {
         categoryTableView.dataSource = self
         getAllCategory()
     }
-
+    
     func getAllCategory(){
-        
-        let request = URL(string: "http://fursakizci.tk/movies/all_categories.php")!
-        
-        URLSession.shared.dataTask(with: request){(data,response,error) in
-            
-            if error != nil || data == nil{
-                print("Error")
-            }
-            guard let data = data else {return}
-            
-            do{
-                 let result = try JSONDecoder().decode(CategoryResult.self, from: data)
-                
-                if let resultCategory = result.categories{
-                    self.categories = resultCategory
-                }
-                DispatchQueue.main.async {
-                    self.categoryTableView.reloadData()
-                }
-            }catch{
+        Network.category { (categoryResult, error) in
+            if let error = error{
                 print(error.localizedDescription)
             }
-        }.resume()
+            if let resultCategory = categoryResult?.categories{
+                self.categories = resultCategory
+            }
+            DispatchQueue.main.async {
+                self.categoryTableView.reloadData()
+            }
+        }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let indexPath = sender as? Int
@@ -56,10 +44,6 @@ class CategoryViewController: UIViewController {
     }
     
 }
-
-
-
-
 
 //MARK: - UITableViewDelegate
 extension CategoryViewController:UITableViewDelegate{

@@ -19,6 +19,7 @@ class MovieViewController: UIViewController {
     
     private var movies = [Movies]()
     private var searchResultMovies = [Movies]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         movieCollectionView.dataSource = self
@@ -32,39 +33,21 @@ class MovieViewController: UIViewController {
                 moviesByCategoryId(category_id: category_id)
             }
             navigationItem.title = category.category_name
-            
         }
-        
         collectionViewLayout()
     }
-    func moviesByCategoryId(category_id:Int) {
-           
-        var request = URLRequest(url:URL(string:"http://fursakizci.tk/movies/movies_by_category_id.php")!)
-        request.httpMethod = "POST"
-        let postString = "category_id=\(category_id)"
-        request.httpBody = postString.data(using: .utf8)
-        
-        URLSession.shared.dataTask(with: request){(data,response,error) in
-            
-            if error != nil || data == nil{
-                print("Error")
+    
+    func moviesByCategoryId(category_id:Int){
+
+        Network.movies(category_id: category_id) { (movieResult, error) in
+            if let resultMovie = movieResult?.movies{
+                self.movies = resultMovie
             }
-            guard let data = data else {return}
-            
-            do{
-                let result = try JSONDecoder().decode(MovieResult.self, from: data)
-                if let resultMovie = result.movies{
-                    self.movies = resultMovie
-                }
-                DispatchQueue.main.async {
-                    self.movieCollectionView.reloadData()
-                }
-            }catch{
-                print(error.localizedDescription)
+            DispatchQueue.main.async {
+                self.movieCollectionView.reloadData()
             }
-        }.resume()
-        
-       }
+        }
+        }
     
     func collectionViewLayout(){
         
